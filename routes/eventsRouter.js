@@ -8,6 +8,6 @@ const upload = multer();
 router.get('/', events.index);
 router.post('/', upload.none(), events.store);
 router.get('/:event', events.show);
-router.put('/:event', events.update);
+router.put('/:id',upload.none(), events.update);
 
 module.exports = router;

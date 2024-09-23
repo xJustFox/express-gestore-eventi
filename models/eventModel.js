@@ -46,6 +46,30 @@ class Event {
         writeJSON('eventsDB', [...this.events, newEvent]);
         return {statusCode: 200, message: 'Added data'};
     };
+
+    static updateEvent(data = {}) {
+        const {findId, newTitle, newDescription, newDate, newMaxSeats} = data;
+        const flagId = this.events.find(e => e.id === Number(findId));
+
+        if (!flagId) {
+            return {statusCode: 404, message: `Data with id:'${findId}' not found`};
+        }
+
+        const newEvents = this.events.map((e) => {
+            if (e.id === Number(findId)) {
+                return {
+                    ...e,
+                    title: newTitle,
+                    description: newDescription,
+                    date: newDate,
+                    MaxSeats: newMaxSeats
+                };
+            }
+            return e;
+        });
+        writeJSON('eventsDB', newEvents);
+        return {statusCode: 200, message: 'Modified data'};
+    }
 }
 
 module.exports = Event;

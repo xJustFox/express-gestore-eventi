@@ -39,7 +39,30 @@ const store = (req, res) => {
 };
 
 const update = (req, res) => {
-    res.status(501).json({ statusCode: 501, error: 'Not Implemented' });
+
+    if (req.is('multipart/form-data')) {
+        if (!req.params.id) {
+            return res.status(400).json({ statusCode: 400, error: 'Some data missing' });
+        }
+        
+        if (!req.body.title || !req.body.description || !req.body.date || !req.body.maxSeats) {
+            return res.status(400).json({ statusCode: 400, error: 'Some data missing' });
+        }
+
+        const  updatedData = {
+            findId: req.params.id,
+            newTitle: req.body.title,
+            newDescription: req.body.description,
+            newDate: req.body.date,
+            newMaxSeats: req.body.maxSeats
+        }
+        
+        const event = eventModels.updateEvent(updatedData);
+    
+        return res.status(event.statusCode).json(event);
+    } else {
+        return res.status(415).send('Content-Type Not Acceptable');
+    }
 };
 
 module.exports = {

@@ -4,7 +4,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 const host = process.env.HOST || 'localhost';
 
-const eventsRouter = require('./routes/events.js');
+const eventsRouter = require('./routes/eventsRouter.js');
 
 app.get('/', (req, res) => res.send('Hello World!'));
 app.use('/events', eventsRouter);

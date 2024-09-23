@@ -1,1 +1,51 @@
-[]
+[
+    {
+        "id": 1,
+        "title": "Concerto di musica classica",
+        "description": "Un evento di musica classica con orchestra sinfonica.",
+        "date": "2023-10-01",
+        "maxSeats": 150
+    },
+    {
+        "id": 2,
+        "title": "Fiera del libro",
+        "description": "Un evento dedicato agli amanti della lettura con stand di editori.",
+        "date": "2023-11-15",
+        "maxSeats": 500
+    },
+    {
+        "id": 3,
+        "title": "Mostra di arte moderna",
+        "description": "Una mostra dedicata alle opere d'arte moderne da vari artisti.",
+        "date": "2023-12-05",
+        "maxSeats": 200
+    },
+    {
+        "id": 4,
+        "title": "Festival del cinema",
+        "description": "Proiezione di film indipendenti con ospiti internazionali.",
+        "date": "2023-11-15", 
+        "maxSeats": 300
+    },
+    {
+        "id": 5,
+        "title": "Workshop di fotografia",
+        "description": "Corso pratico di fotografia per principianti.",
+        "date": "2023-12-05",
+        "maxSeats": 50
+    },
+    {
+        "id": 6,
+        "title": "Seminario di sviluppo web",
+        "description": "Impara le basi dello sviluppo web con esperti del settore.",
+        "date": "2024-01-10",
+        "maxSeats": 100
+    },
+    {
+        "id": 7,
+        "title": "Fiera tecnologica",
+        "description": "Esposizione delle ultime innovazioni tecnologiche.",
+        "date": "2023-12-05",
+        "maxSeats": 400
+    }
+]

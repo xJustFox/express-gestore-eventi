@@ -33,9 +33,6 @@ class Event {
     static getSingleEvent(findId) {
         const event = this.events.find(e => e.id === Number(findId));
 
-        console.log(event);
-
-
         if (!event) {
             return { statusCode: 404, error: 'Not Found' };
         }

@@ -23,11 +23,11 @@ const show = (req, res) => {
 };
 
 const store = (req, res) => {
-    res.status(200).send(`${req.method} ${req.originalUrl}`);
+    res.status(501).json({ statusCode: 501, error: 'Not Implemented' });
 };
 
 const update = (req, res) => {
-    res.status(200).send(`${req.method} ${req.originalUrl}`);
+    res.status(501).json({ statusCode: 501, error: 'Not Implemented' });
 };
 
 module.exports = {

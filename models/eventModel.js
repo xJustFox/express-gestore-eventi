@@ -5,11 +5,11 @@ class Event {
     static counter = this.events.length + 1;
 
     constructor(title, description, date, maxSeats) {
-        this.id = Event.counter++,
+            this.id = Event.counter++,
             this.title = title,
             this.description = description,
             this.date = date,
-            this.maxSeats
+            this.maxSeats = maxSeats
     };
 
     static getEvents(filters = {}) {
@@ -40,19 +40,20 @@ class Event {
         return event;
     };
 
-    static addNewEvent(data = {}) {   
-        const {title, description, date, maxSeats} = data;
+    static addNewEvent(data = {}) {
+        const { title, description, date, maxSeats } = data;
         const newEvent = new Event(title, description, date, maxSeats)
-        writeJSON('eventsDB', [...this.events, newEvent]);
-        return {statusCode: 200, message: 'Added data'};
+        this.events.push(newEvent);
+        writeJSON('eventsDB', this.events);
+        return { statusCode: 200, message: 'Added data' };
     };
 
     static updateEvent(data = {}) {
-        const {findId, newTitle, newDescription, newDate, newMaxSeats} = data;
+        const { findId, newTitle, newDescription, newDate, newMaxSeats } = data;
         const flagId = this.events.find(e => e.id === Number(findId));
 
         if (!flagId) {
-            return {statusCode: 404, message: `Data with id:'${findId}' not found`};
+            return { statusCode: 404, message: `Data with id:'${findId}' not found` };
         }
 
         const newEvents = this.events.map((e) => {
@@ -62,13 +63,15 @@ class Event {
                     title: newTitle,
                     description: newDescription,
                     date: newDate,
-                    MaxSeats: newMaxSeats
+                    maxSeats: newMaxSeats
                 };
             }
             return e;
         });
-        writeJSON('eventsDB', newEvents);
-        return {statusCode: 200, message: 'Modified data'};
+
+        this.events = newEvents; 
+        writeJSON('eventsDB', this.events);
+        return { statusCode: 200, message: 'Modified data' };
     }
 }
 

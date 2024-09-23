@@ -5,11 +5,13 @@ const port = process.env.PORT || 5000;
 const host = process.env.HOST || 'localhost';
 
 const eventsRouter = require('./routes/eventsRouter.js');
+const reservationsRouter = require('./routes/reservationsRouter.js');
 const errorsFormatter = require('./middlewares/errorFormatter.js');
 const routesNotFound = require('./middlewares/routesNotFound.js');
 
 app.get('/', (req, res) => res.send('Hello World!'));
 app.use('/events', eventsRouter);
+app.use('/events/:event/', reservationsRouter);
 
 app.use(errorsFormatter);
 app.use(routesNotFound);

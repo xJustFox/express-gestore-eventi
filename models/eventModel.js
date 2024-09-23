@@ -1,8 +1,8 @@
 
 const { readJSON, writeJSON } = require('../utils.js');
 class Event {
-    static counter = 0;
     static events = readJSON('eventsDB');
+    static counter = this.events.length + 1;
 
     constructor(title, description, date, maxSeats) {
         this.id = Event.counter++,
@@ -28,7 +28,7 @@ class Event {
         }
 
         return events;
-    }
+    };
 
     static getSingleEvent(findId) {
         const event = this.events.find(e => e.id === Number(findId));
@@ -38,7 +38,14 @@ class Event {
         }
 
         return event;
-    }
+    };
+
+    static addNewEvent(data = {}) {   
+        const {title, description, date, maxSeats} = data;
+        const newEvent = new Event(title, description, date, maxSeats)
+        writeJSON('eventsDB', [...this.events, newEvent]);
+        return {statusCode: 200, message: 'Added data'};
+    };
 }
 
 module.exports = Event;

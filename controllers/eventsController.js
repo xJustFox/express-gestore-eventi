@@ -19,11 +19,23 @@ const show = (req, res) => {
         return res.status(event.statusCode).json(event);
     }
 
-    return res.status(200).json(event);
+    res.status(200).json(event);
 };
 
 const store = (req, res) => {
-    res.status(501).json({ statusCode: 501, error: 'Not Implemented' });
+    if (req.is('multipart/form-data')) {
+
+        if (!req.body.title || !req.body.description || !req.body.date || !req.body.maxSeats) {
+           return res.status(400).json({ statusCode: 400, error: 'Some data missing' });
+        }
+        
+        const event = eventModels.addNewEvent(req.body);
+    
+        return res.status(event.statusCode).json(event);
+    } else {
+        return res.status(415).send('Content-Type Not Acceptable');
+    }
+    
 };
 
 const update = (req, res) => {
